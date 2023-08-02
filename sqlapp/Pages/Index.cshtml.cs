@@ -9,11 +9,16 @@ namespace sqlapp.Pages
     {
         public List<Product> Products { get; set; }
 
+        private readonly IProductService _productService;
+
+        public IndexModel(IProductService productService)
+        {
+            _productService = productService;
+        }
+
         public void OnGet()
         {
-            ProductService productService = new ProductService();
-
-            Products = productService.GetProducts();
+            Products = _productService.GetProducts();
 
         }
     }
